@@ -1,0 +1,465 @@
+dating App update:-
+    Matches,
+    Security,
+    change passcode,
+    manage payment account ,
+    addnew card, 
+    edit card,
+    about us,
+    select your type,
+    unit measure setting,
+    filter location,
+
+    language,
+
+
+     <Swiper
+        // style={{ flex: 1 }}
+        showsButtons={true}
+        loop
+        // showsPagination={false}
+        index={slide}
+        onMomentumScrollEnd={(e, state, context) => setSlide(state.index)}
+        buttonWrapperStyle={{ paddingHorizontal: 0 }}
+        nextButton={<Image source={require('../../assets/icons/sidebar_white.png')} style={{ height: 145, width: 25, resizeMode: 'contain' }} />}
+        prevButton={<Image source={require('../../assets/icons/sidebar_white1.png')} style={{ height: 145, width: 25, resizeMode: 'contain' }} />}
+        activeDotStyle={{ height: 10, width: 25, backgroundColor: '#fff', borderRadius: 30 }}
+        dotStyle={{ height: 10, width: 10, backgroundColor: '#fff', borderRadius: 20, opacity: 0.3 }}
+        paginationStyle={{ marginBottom: 80 }}
+      >
+        <View style={{ flex: 1 }}>
+          <ImageBackground source={require('../../assets/images/ViewPlanBg.png')} style={{ height: '100%', width: '100%' }} resizeMode="cover">
+            <ScrollView>
+              <View style={{ height: 100 }} />
+              <TextFormatted style={{ fontSize: 32, fontWeight: '700', color: theme.colors.primary, textAlign: 'center' }}>Basic</TextFormatted>
+              <Container source={require('../../assets/icons/like.png')} title="300 Like" subtitle={'per month'} />
+              <Container source={require('../../assets/icons/flower.png')} title="30 Flowers" subtitle={'per month'} />
+              <Container source={require('../../assets/icons/Rocket.png')} title="3 Boost" subtitle={'per month'} />
+              <Container source={require('../../assets/icons/camera.png')} title="5 Photo" />
+              <Container source={require('../../assets/icons/youtube.png')} title="1 Video" />
+            </ScrollView>
+          </ImageBackground>
+        </View>
+        <View style={{ flex: 1 }}>
+          <LinearGradient colors={['#8490AE', '#ADB9D7']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ height: '100%', width: '100%' }}>
+            <ScrollView>
+              <View style={{ height: 100 }} />
+              <TextFormatted style={{ fontSize: 32, fontWeight: '700', color: theme.colors.primary, textAlign: 'center' }}>Pro</TextFormatted>
+              <Container source={require('../../assets/icons/like.png')} title="1000 Like" subtitle={'per month'} />
+              <Container source={require('../../assets/icons/flower.png')} title="100 Flowers" subtitle={'per month'} />
+              <Container source={require('../../assets/icons/Rocket.png')} title="10 Boost" subtitle={'per month'} />
+              <Container source={require('../../assets/icons/camera.png')} title="10 Photo" />
+              <Container source={require('../../assets/icons/youtube.png')} title="3 Video" />
+            </ScrollView>
+          </LinearGradient>
+        </View>
+        <View style={{ flex: 1 }}>
+          <LinearGradient colors={['#8490AE', '#ADB9D7']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ height: '100%', width: '100%' }}>
+            <ScrollView>
+              <View style={{ height: 100 }} />
+              <TextFormatted style={{ fontSize: 32, fontWeight: '700', color: theme.colors.primary, textAlign: 'center' }}>Elite</TextFormatted>
+              <Container source={require('../../assets/icons/like.png')} title="5000 Like" subtitle={'per month'} />
+              <Container source={require('../../assets/icons/flower.png')} title="150 Flowers" subtitle={'per month'} />
+              <Container source={require('../../assets/icons/Rocket.png')} title="15 Boost" subtitle={'per month'} />
+              <Container source={require('../../assets/icons/camera.png')} title="15 Photo" />
+              <Container source={require('../../assets/icons/youtube.png')} title="5 Video" />
+            </ScrollView>
+          </LinearGradient>
+        </View>
+      </Swiper>
+
+      <View style={{ flexDirection: 'row', alignItems: 'center', position: 'absolute', marginTop: 40, marginHorizontal: 20 }}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image source={require('../../assets/icons/back.png')} style={{ height: 40, width: 40, resizeMode: 'contain' }} />
+        </TouchableOpacity>
+        <TextFormatted style={{ fontSize: 16, fontWeight: '700', color: theme.colors.primary, flex: 1, textAlign: 'center' }}>
+          Subscription Plans
+        </TextFormatted>
+        <TouchableOpacity onPress={() => refRBSheet.current.open()}>
+          <Image source={require('../../assets/icons/matches.png')} style={{ height: 40, width: 40, resizeMode: 'contain' }} />
+        </TouchableOpacity>
+      </View>
+      <View
+        style={{
+          height: 92,
+          width: '100%',
+          borderTopRightRadius: 40,
+          borderTopLeftRadius: 40,
+          position: 'absolute',
+          backgroundColor: '#fff',
+          bottom: 0,
+        }}
+      >
+        <TextFormatted
+          style={{ fontSize: 20, fontWeight: '700', color: theme.colors.red, flex: 1, textAlign: 'center', textAlignVertical: 'center' }}
+        >
+          {slide == 0 ? 'Current Plan' : 'Upgrade Plan'}
+        </TextFormatted>
+      </View>
+      <PlanCompaire refRBSheet={refRBSheet}></PlanCompaire>
+
+      
+const SettingPopup = ({ refRBSheet, refRBSheet2, setIsReport }) => {
+  return (
+    <RBSheet
+      ref={refRBSheet}
+      height={120}
+      closeOnDragDown={true}
+      // closeOnPressMask={false}
+      closeOnPressBack={() => refRBSheet.current.close()}
+      customStyles={{
+        wrapper: { backgroundColor: 'transparent' },
+        draggableIcon: { backgroundColor: '#8490AE' },
+        container: { borderTopLeftRadius: 40, borderTopRightRadius: 40 },
+      }}
+    >
+      <TouchableOpacity
+        style={{ flexDirection: 'row', marginLeft: 20, marginRight: 30, paddingVertical: 2, marginTop: 20 }}
+        onPress={() => {
+          setIsReport(1);
+          refRBSheet2.current.open();
+        }}
+      >
+        <TextFormatted style={{ fontSize: 14, fontWeight: '600', color: theme.colors.red, flex: 1 }}>Report...</TextFormatted>
+        <Icon name="navigate-next" size={20} color={theme.colors.red} />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{ flexDirection: 'row', marginLeft: 20, marginRight: 30, paddingVertical: 2, marginTop: 10 }}
+        onPress={() => {
+          setIsReport(0);
+          refRBSheet2.current.open();
+        }}
+      >
+        <TextFormatted style={{ fontSize: 14, fontWeight: '600', color: theme.colors.primaryBlack, flex: 1 }}>Block account</TextFormatted>
+        <Icon name="navigate-next" size={20} color={theme.colors.primaryBlack} />
+      </TouchableOpacity>
+    </RBSheet>
+  );
+};
+const NotificationPopup = ({ refRBSheet1 }) => {
+  const data = [
+    {
+      img: require('../../assets/images/profile.png'),
+      mess: 'Send you a message',
+      name: 'Sofia Dickens',
+      timing: '12:34',
+    },
+    {
+      img: require('../../assets/images/profile2.png'),
+      mess: 'Liked your profile',
+      name: 'Sarah Parker',
+      timing: 'Yesterday',
+    },
+    {
+      img: require('../../assets/images/profile.png'),
+      mess: 'Send you a message',
+      name: 'Carla Lopez',
+      timing: 'Yesterday',
+    },
+    {
+      img: require('../../assets/images/profile2.png'),
+      mess: 'Send you a message',
+      name: 'Sofia Dickens',
+      timing: 'Yesterday',
+    },
+    {
+      img: require('../../assets/images/profile2.png'),
+      mess: 'Send you a message',
+      name: 'Sofia Dickens',
+      timing: 'Yesterday',
+    },
+    {
+      img: require('../../assets/images/profile2.png'),
+      mess: 'Send you a message',
+      name: 'Sofia Dickens',
+      timing: 'Yesterday',
+    },
+    {
+      img: require('../../assets/images/profile2.png'),
+      mess: 'Send you a message',
+      name: 'Sofia Dickens',
+      timing: 'Yesterday',
+    },
+    {
+      img: require('../../assets/images/profile2.png'),
+      mess: 'Send you a message',
+      name: 'Sofia Dickens',
+      timing: 'Yesterday',
+    },
+    {
+      img: require('../../assets/images/profile2.png'),
+      mess: 'Send you a message',
+      name: 'Sofia Dickens',
+      timing: 'Yesterday',
+    },
+    {
+      img: require('../../assets/images/profile2.png'),
+      mess: 'Send you a message',
+      name: 'Sofia Dickens',
+      timing: 'Yesterday',
+    },
+    {
+      img: require('../../assets/images/profile2.png'),
+      mess: 'Send you a message',
+      name: 'Sofia Dickens',
+      timing: 'Yesterday',
+    },
+    {
+      img: require('../../assets/images/profile2.png'),
+      mess: 'Send you a message',
+      name: 'Sofia Dickens',
+      timing: 'Yesterday',
+    },
+  ];
+  return (
+    <RBSheet
+      ref={refRBSheet1}
+      closeOnDragDown={true}
+      height={500}
+      // closeOnPressMask={false}
+      closeOnPressBack={() => refRBSheet1.current.close()}
+      customStyles={{
+        wrapper: { backgroundColor: 'transparent' },
+        draggableIcon: { backgroundColor: '#8490AE' },
+        container: { borderTopLeftRadius: 40, borderTopRightRadius: 40 },
+      }}
+    >
+      <Fontisto
+        name="close-a"
+        size={16}
+        color="#000"
+        style={{ alignSelf: 'flex-end', marginRight: 30, marginTop: 10 }}
+        onPress={() => refRBSheet1.current.close()}
+      />
+      <FlatList
+        data={data}
+        renderItem={({ item }) => (
+          <View style={{ flexDirection: 'row', marginHorizontal: 20, alignItems: 'center', marginVertical: 7 }}>
+            <ImageBackground source={item.img} style={{ height: 53, width: 53 }} imageStyle={{ borderRadius: 20 }} resizeMode="contain">
+              <View style={{ height: 8, width: 8, borderRadius: 15, backgroundColor: '#ED799B', alignSelf: 'flex-end', margin: 2 }} />
+            </ImageBackground>
+            <View style={{ marginLeft: 8, flex: 1 }}>
+              <TextFormatted style={{ fontSize: 14, fontWeight: '600', color: theme.colors.primaryBlack }}>{item.name}</TextFormatted>
+              <TextFormatted style={{ fontSize: 12, fontWeight: '400', color: '#8490AE', marginTop: 5 }}>{item.mess}</TextFormatted>
+            </View>
+            <TextFormatted style={{ fontSize: 12, fontWeight: '300', color: '#8490AE' }}>{item.timing}</TextFormatted>
+          </View>
+        )}
+      />
+    </RBSheet>
+  );
+};
+const BlockReport = ({ refRBSheet2, refRBSheet, isReport, setIsReport }) => {
+  return (
+    <RBSheet
+      ref={refRBSheet2}
+      height={500}
+      closeOnDragDown={true}
+      // closeOnPressMask={false}
+      closeOnPressBack={() => refRBSheet2.current.close()}
+      customStyles={{
+        wrapper: { backgroundColor: 'transparent' },
+        draggableIcon: { backgroundColor: '#8490AE' },
+        container: { borderTopLeftRadius: 40, borderTopRightRadius: 40 },
+      }}
+    >
+      <AntDesign
+        onPress={() => {
+          refRBSheet.current.open();
+          refRBSheet2.current.close();
+        }}
+        name="arrowleft"
+        size={20}
+        color={theme.colors.primaryBlack}
+        style={{
+          height: 40,
+          width: 40,
+          backgroundColor: '#FFFFFF33',
+          textAlign: 'center',
+          textAlignVertical: 'center',
+          borderRadius: 12,
+          marginLeft: 20,
+        }}
+      />
+      <LinearGradient
+        colors={['#EEF4FF', '#CFE7FD']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={{ height: 144, width: 144, borderRadius: 20, justifyContent: 'center', alignItems: 'center', alignSelf: 'center', marginTop: 25 }}
+      >
+        <LinearGradient
+          colors={['#EA4A5A', '#F27380']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={{ height: 124, width: 124, borderRadius: 20, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <Image
+            source={isReport == 1 ? require('../../assets/icons/alert.png') : require('../../assets/icons/akar.png')}
+            style={{ height: 63, width: 63, resizeMode: 'contain' }}
+          />
+        </LinearGradient>
+      </LinearGradient>
+      <TextFormatted style={{ fontSize: 18, fontWeight: '600', color: theme.colors.primaryBlack, marginHorizontal: 20, marginTop: 40 }}>
+        {isReport == 1 ? 'Why are you reporting this account?' : 'Are you sure you want to block this account?'}
+      </TextFormatted>
+      <TextFormatted style={{ fontSize: 14, fontWeight: '400', color: '#8490AE', marginHorizontal: 20, marginTop: 14 }}>
+        {isReport == 1
+          ? 'Your reports are always anonymous'
+          : 'By blocking your account, you will not be able to visit your profile and send you messages'}
+      </TextFormatted>
+      {isReport == 1 ? (
+        <View>
+          <TouchableOpacity style={{ flexDirection: 'row', marginLeft: 20, marginRight: 30, paddingVertical: 2, marginTop: 30 }}>
+            <TextFormatted style={{ fontSize: 14, fontWeight: '600', color: theme.colors.primaryBlack, flex: 1 }}>Report post</TextFormatted>
+            <Icon name="navigate-next" size={20} color={theme.colors.primaryBlack} />
+          </TouchableOpacity>
+          <TouchableOpacity style={{ flexDirection: 'row', marginLeft: 20, marginRight: 30, paddingVertical: 2, marginTop: 10 }}>
+            <TextFormatted style={{ fontSize: 14, fontWeight: '600', color: theme.colors.primaryBlack, flex: 1 }}>Report account</TextFormatted>
+            <Icon name="navigate-next" size={20} color={theme.colors.primaryBlack} />
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <View>
+          <Button buttonColor={theme.colors.primaryOn} buttonName={'Block account'} color={'#fff'} />
+          <TextFormatted style={{ fontSize: 14, fontWeight: '400', color: theme.colors.primaryBlack, alignSelf: 'center', marginTop: 20 }}>
+            Cancel
+          </TextFormatted>
+        </View>
+      )}
+    </RBSheet>
+  );
+};
+
+
+<FlatList
+        data={data}
+        // style={{ flex: 1 }}
+        contentContainerStyle={{ flexGrow: 1, backgroundColor: 'blue' }}
+        pagingEnabled={true}
+        renderItem={({ item }) => (
+          <View>
+            <Swiper
+              loop={false}
+              style={{ flex: 1 }}
+              showsButtons={true}
+              showsPagination={false}
+              buttonWrapperStyle={{ paddingHorizontal: 0 }}
+              nextButton={<Image source={require('../../assets/icons/sidebar2.png')} style={{ height: 145, width: 25, resizeMode: 'contain' }} />}
+              prevButton={<Image source={require('../../assets/icons/sidebar1.png')} style={{ height: 145, width: 25, resizeMode: 'contain' }} />}
+            >
+              {item.image?.map((it, i) => (
+                <Image
+                  source={it.img}
+                  resizeMode="cover"
+                  style={{ height: dimension.width, width: dimension.height, flex: 1, backgroundColor: 'red' }}
+                />
+              ))}
+            </Swiper>
+            <View style={{ position: 'absolute', top: 44, marginHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}>
+              <TouchableOpacity onPress={() => navigation.navigate('userProfile')}>
+                <Image source={item.userprofile} style={{ height: 50, width: 50, resizeMode: 'cover', borderRadius: 20 }} />
+              </TouchableOpacity>
+              <View style={{ marginLeft: 8, flex: 1 }}>
+                <TextFormatted style={{ fontSize: 16, fontWeight: '700', color: '#fff' }}>{item.username}</TextFormatted>
+                <TextFormatted style={{ fontSize: 12, fontWeight: '400', color: '#fff' }}>{item.timing}</TextFormatted>
+              </View>
+              <TouchableOpacity onPress={() => refRBSheet1.current.open()}>
+                <Image
+                  source={require('../../assets/icons/notification.png')}
+                  style={{ height: 40, width: 40, resizeMode: 'contain', marginRight: 10 }}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => refRBSheet.current.open()}
+                style={{ height: 40, width: 40, backgroundColor: '#FFFFFF33', alignItems: 'center', justifyContent: 'center', borderRadius: 10 }}
+              >
+                <Entypo name="dots-three-vertical" color={'#fff'} size={16} />
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
+      />
+      <View
+        style={{
+          height: 100,
+          width: '100%',
+          backgroundColor: '#FFFFFF1A',
+          // backgroundColor: 'red',
+          position: 'absolute',
+          bottom: 0,
+          borderTopLeftRadius: 40,
+          borderTopRightRadius: 40,
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}
+      >
+        <Icon
+          onPress={() => scroll.current.scrollTo({ animated: true })}
+          name="keyboard-arrow-left"
+          size={20}
+          color="#fff"
+          style={{
+            height: 24,
+            width: 24,
+            backgroundColor: '#FFFFFF4D',
+            borderRadius: 30,
+            textAlign: 'center',
+            textAlignVertical: 'center',
+            marginLeft: 20,
+          }}
+        />
+        <ScrollView horizontal ref={scroll} pagingEnabled={true} showsHorizontalScrollIndicator={false}>
+          <Tab currentTab={true} source={require('../../assets/home_icons/home.png')} />
+          <Tab source={require('../../assets/home_icons/focus.png')} />
+          <Tab source={require('../../assets/home_icons/love.png')} />
+          <Tab source={require('../../assets/home_icons/messages.png')} onPress={() => navigation.navigate('chatList')} />
+          <Tab source={require('../../assets/home_icons/profile.png')} onPress={() => navigation.navigate('myProfile')} />
+          <Tab source={require('../../assets/home_icons/category.png')} onPress={() => refRBSheet2.current.open()} />
+          <Tab source={require('../../assets/home_icons/boost.png')} />
+          <Tab source={require('../../assets/home_icons/flower.png')} />
+          <Tab source={require('../../assets/home_icons/like.png')} />
+          <Tab source={require('../../assets/home_icons/dislike.png')} />
+        </ScrollView>
+        <Icon
+          onPress={() => scroll.current.scrollToEnd({ animated: true })}
+          name="keyboard-arrow-right"
+          size={20}
+          color="#fff"
+          style={{
+            height: 24,
+            width: 24,
+            backgroundColor: '#FFFFFF4D',
+            borderRadius: 30,
+            textAlign: 'center',
+            textAlignVertical: 'center',
+            marginRight: 20,
+          }}
+        />
+      </View>
+
+      <Notification refRBSheet={refRBSheet1} />
+      <MoreOptions refRBSheet={refRBSheet} />
+      <SelectCategory refRBSheet={refRBSheet2} />
+    </View>
+  );
+};
+
+const Tab = ({ disabled, onPress, source, currentTab }) => {
+  const dimension = useWindowDimensions();
+  return (
+    <TouchableOpacity
+      disabled={disabled}
+      onPress={onPress}
+      style={{
+        marginHorizontal: 3,
+      }}
+    >
+      <LinearGradient
+        colors={currentTab ? ['#EA4A5A', '#F27380'] : ['transparent', 'transparent']}
+        style={{ width: (dimension.width - 118) / 5, justifyContent: 'center', alignItems: 'center', height: 50, borderRadius: 15 }}
+      >
+        <Image source={source} style={{ height: 26, width: 26, resizeMode: 'contain', margin: 10 }} />
+      </LinearGradient>
+    </TouchableOpacity>
+  );
+};
